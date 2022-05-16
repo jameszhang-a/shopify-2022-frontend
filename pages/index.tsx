@@ -1,35 +1,25 @@
-import type { NextPage } from 'next'
+// import type { NextPage } from 'next'
+import { Center, Container } from '@mantine/core';
 import Head from 'next/head';
 import { useState } from 'react';
-import Magic from '../components/Magic';
+import History from '../lib/components/History';
+import Magic from '../lib/components/Magic';
+import StackItem from '../lib/components/StackItem';
 import styles from '../styles/Home.module.css';
 
+export type StackItem = {
+  prompt: String;
+  response: String;
+};
+
 const Home: NextPage = () => {
-  // list of inputs to be displayed in the component
-  const [ inputs, setInputs ] = useState([
-    false,
-    [ 'item 1', 'item 2', 'item 3' ],
-    {
-      name: 'James Zhang',
-      school: 'University of Wisconsin-Madison',
-      grade: 'Junior',
-      GitHub: 'github.com/jameszhang-a',
-      LinkedIn: 'linkedin.com/in/jameszhanga'
-    }
-  ]);
-
+  const [ responseStack, setResponseStack ] = useState([]);
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>James Zhang</title>
-        <meta name='description' content='Ramp front end application' />
-      </Head>
-
-      <main className={styles.main}>
-        <h1 className={styles.title}>James Zhang</h1>
-        {inputs.map((input, idx) => <Magic key={idx} input={input} />)}
-      </main>
-    </div>
+    <Container style={{ height: '100vh' }}>
+      <Magic stack={responseStack} setStack={setResponseStack} />
+      <History stack={responseStack} />
+      <StackItem prompt={'aaa'} response={'AAA'} />
+    </Container>
   );
 };
 
