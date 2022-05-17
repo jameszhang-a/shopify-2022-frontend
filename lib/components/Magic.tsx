@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import styles from '../styles/Home.module.css';
 import { Button, Textarea } from '@mantine/core';
-import { StackItem } from './History';
+import { StackItem } from '../../pages';
 
 type Props = {
-  stack: String[];
-  setStack(item: StackItem): void;
+  stack: StackItem[];
+  setStack(items: StackItem[]): void;
 };
 
 const Magic = ({ stack, setStack }: Props) => {
@@ -35,7 +35,8 @@ const Magic = ({ stack, setStack }: Props) => {
   };
 
   const handleSubmit = () => {
-    setStack([ ...stack, rand() ]);
+    const newStack: StackItem[] = [ rand(), ...stack ];
+    setStack(newStack);
   };
 
   return (

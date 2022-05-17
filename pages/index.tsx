@@ -1,11 +1,11 @@
 // import type { NextPage } from 'next'
-import { Center, Container } from '@mantine/core';
-import Head from 'next/head';
 import { useState } from 'react';
+import Head from 'next/head';
+import { Center, Container } from '@mantine/core';
+
 import History from '../lib/components/History';
 import Magic from '../lib/components/Magic';
-import StackItem from '../lib/components/StackItem';
-import styles from '../styles/Home.module.css';
+import StackItem from '../lib/components/Item';
 
 export type StackItem = {
   prompt: String;
@@ -13,12 +13,11 @@ export type StackItem = {
 };
 
 const Home: NextPage = () => {
-  const [ responseStack, setResponseStack ] = useState([]);
+  const [ responseStack, setResponseStack ] = useState<StackItem[]>([]);
   return (
     <Container style={{ height: '100vh' }}>
       <Magic stack={responseStack} setStack={setResponseStack} />
       <History stack={responseStack} />
-      <StackItem prompt={'aaa'} response={'AAA'} />
     </Container>
   );
 };

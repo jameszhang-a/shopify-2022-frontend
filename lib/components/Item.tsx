@@ -4,7 +4,7 @@ import { StackItem } from '../../pages';
 
 type Props = StackItem;
 
-const StackItem = ({ prompt, response }: Props) => {
+const Item = ({ prompt, response }: Props) => {
   const theme = useMantineTheme();
 
   const secondaryColor =
@@ -36,4 +36,4 @@ const StackItem = ({ prompt, response }: Props) => {
   );
 };
 
-export default StackItem;
+export default Item;
