@@ -1,4 +1,4 @@
-import { Box, Card, Table, useMantineTheme } from '@mantine/core';
+import { Box, Card, Table, useMantineTheme, Text } from '@mantine/core';
 import React from 'react';
 import { StackItem } from '../../pages';
 
@@ -28,7 +28,9 @@ const Item = ({ prompt, response }: Props) => {
           </tr>
           <tr>
             <td>Response: </td>
-            <td>{response}</td>
+            <td>
+              <pre style={{ whiteSpace: 'pre-wrap' }}>{response}</pre>
+            </td>
           </tr>
         </tbody>
       </Table>
