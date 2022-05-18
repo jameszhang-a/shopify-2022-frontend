@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Button, Textarea } from '@mantine/core';
+import { Button, Group, Textarea } from '@mantine/core';
 import { StackItem } from '../../pages';
 import Loading from './Loading';
 
@@ -38,7 +38,7 @@ const Magic = ({ stack, setStack }: Props) => {
 
     // gets rid of the loading component
     setLoading(false);
-    return payload.choices[0].text;
+    return payload.choices[0].text.trimStart();
   };
 
   const inputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -67,15 +67,22 @@ const Magic = ({ stack, setStack }: Props) => {
         minRows={10}
         sx={{ marginBottom: '10px', marginTop: '20px' }}
       />
-      <Button
-        color='grape'
-        radius='md'
-        size='md'
-        onClick={handleSubmit}
-        disabled={disableSubmit}
-      >
-        Get Response!
-      </Button>
+      <Group spacing='xl'>
+        <Button
+          color='grape'
+          radius='md'
+          size='md'
+          onClick={handleSubmit}
+          disabled={disableSubmit}
+        >
+          Get Response!
+        </Button>
+        {stack.length > 0 && (
+          <Button color='red' radius='md' size='md' onClick={() => setStack([])}>
+            Clear History
+          </Button>
+        )}
+      </Group>
       {loading && <Loading />}
     </div>
   );

@@ -1,3 +1,4 @@
+import React from 'react';
 import { StackItem } from '../../pages';
 import Item from './Item';
 

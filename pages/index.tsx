@@ -1,6 +1,7 @@
 import { NextPage } from 'next';
 import { useState } from 'react';
 import { Container, Title } from '@mantine/core';
+import { useLocalStorage } from '@mantine/hooks';
 
 import History from '../lib/components/History';
 import Magic from '../lib/components/Magic';
@@ -12,7 +13,11 @@ export type StackItem = {
 };
 
 const Home: NextPage = () => {
-  const [ responseStack, setResponseStack ] = useState<StackItem[]>([]);
+  const [ responseStack, setResponseStack ] = useLocalStorage<StackItem[]>({
+    key: 'responses',
+    defaultValue: []
+  });
+
   return (
     <Container style={{ height: '100vh' }}>
       <Title order={1}>Ask the AI anything!</Title>
