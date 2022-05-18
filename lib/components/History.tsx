@@ -1,4 +1,4 @@
-// import type { StackItem } from '../../pages';
+import { StackItem } from '../../pages';
 import Item from './Item';
 
 type Props = {

@@ -26,6 +26,31 @@ const Magic = ({ stack, setStack }: Props) => {
     return randomElement;
   };
 
+  const openAI = async (): Promise<string> => {
+    const data = {
+      prompt,
+      temperature: 0.6,
+      max_tokens: 150,
+      top_p: 1.0,
+      frequency_penalty: 1,
+      presence_penalty: 1
+    };
+
+    const payload = await (await fetch(
+      'https://api.openai.com/v1/engines/text-curie-001/completions',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${process.env.NEXT_PUBLIC_OPENAI_API_KEY}`
+        },
+        body: JSON.stringify(data)
+      }
+    )).json();
+    console.log(payload);
+    return payload.choices[0].text;
+  };
+
   const inputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const input = e.currentTarget.value;
     setPrompt(input);
@@ -34,8 +59,11 @@ const Magic = ({ stack, setStack }: Props) => {
     setDisableSubmit(input === '');
   };
 
-  const handleSubmit = () => {
-    const newStack: StackItem[] = [ rand(), ...stack ];
+  const handleSubmit = async () => {
+    const res = await openAI();
+    console.log(res);
+
+    const newStack: StackItem[] = [ { prompt, response: res }, ...stack ];
     setStack(newStack);
   };
 
