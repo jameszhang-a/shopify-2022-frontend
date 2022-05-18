@@ -76,6 +76,7 @@ const Magic = ({ stack, setStack }: Props) => {
         onChange={inputChange}
         autosize
         minRows={10}
+        sx={{ marginBottom: '20px', marginTop: '20px' }}
       />
       <Button
         color='grape'
