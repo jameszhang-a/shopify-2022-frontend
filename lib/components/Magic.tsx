@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import styles from '../styles/Home.module.css';
 import { Button, Textarea } from '@mantine/core';
 import { StackItem } from '../../pages';
+import Loading from './Loading';
 
 type Props = {
   stack: StackItem[];
@@ -11,6 +12,7 @@ type Props = {
 const Magic = ({ stack, setStack }: Props) => {
   const [ prompt, setPrompt ] = useState('');
   const [ disableSubmit, setDisableSubmit ] = useState(true);
+  const [ loading, setLoading ] = useState(false);
 
   const rand = (): StackItem => {
     const choice = [
@@ -27,6 +29,7 @@ const Magic = ({ stack, setStack }: Props) => {
   };
 
   const openAI = async (): Promise<string> => {
+    setLoading(true);
     const data = {
       prompt,
       temperature: 0.6,
@@ -48,6 +51,7 @@ const Magic = ({ stack, setStack }: Props) => {
       }
     )).json();
     console.log(payload);
+    setLoading(false);
     return payload.choices[0].text;
   };
 
@@ -76,7 +80,7 @@ const Magic = ({ stack, setStack }: Props) => {
         onChange={inputChange}
         autosize
         minRows={10}
-        sx={{ marginBottom: '20px', marginTop: '20px' }}
+        sx={{ marginBottom: '10px', marginTop: '20px' }}
       />
       <Button
         color='grape'
@@ -87,6 +91,7 @@ const Magic = ({ stack, setStack }: Props) => {
       >
         Get Response!
       </Button>
+      {loading && <Loading />}
     </div>
   );
 };
