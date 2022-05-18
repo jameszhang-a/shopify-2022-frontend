@@ -1,7 +1,6 @@
 import { NextPage } from 'next';
 import { useState } from 'react';
-import Head from 'next/head';
-import { Center, Container, Text, Title } from '@mantine/core';
+import { Container, Title } from '@mantine/core';
 
 import History from '../lib/components/History';
 import Magic from '../lib/components/Magic';

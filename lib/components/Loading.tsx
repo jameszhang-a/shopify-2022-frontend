@@ -1,5 +1,4 @@
 import { LoadingOverlay } from '@mantine/core';
-import React from 'react';
 import Item from './Item';
 
 const Loading = () => {
@@ -7,7 +6,6 @@ const Loading = () => {
     <div style={{ position: 'relative' }}>
       <LoadingOverlay visible />
       <Item prompt={''} response={''} />
-      {/* ...other content */}
     </div>
   );
 };

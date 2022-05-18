@@ -1,5 +1,4 @@
-import { useEffect, useState } from 'react';
-import styles from '../styles/Home.module.css';
+import { useState } from 'react';
 import { Button, Textarea } from '@mantine/core';
 import { StackItem } from '../../pages';
 import Loading from './Loading';
@@ -13,20 +12,6 @@ const Magic = ({ stack, setStack }: Props) => {
   const [ prompt, setPrompt ] = useState('');
   const [ disableSubmit, setDisableSubmit ] = useState(true);
   const [ loading, setLoading ] = useState(false);
-
-  const rand = (): StackItem => {
-    const choice = [
-      { prompt: 'aaa', response: 'AAA' },
-      { prompt: 'bbb', response: 'BBB' },
-      { prompt: 'ccc', response: 'CCC' },
-      { prompt: 'ddd', response: 'DDD' },
-      { prompt: 'eee', response: 'EEE' },
-      { prompt: 'fff', response: 'FFF' }
-    ];
-    const randomElement: StackItem = choice[Math.floor(Math.random() * choice.length)];
-
-    return randomElement;
-  };
 
   const openAI = async (): Promise<string> => {
     setLoading(true);
@@ -50,7 +35,8 @@ const Magic = ({ stack, setStack }: Props) => {
         body: JSON.stringify(data)
       }
     )).json();
-    console.log(payload);
+
+    // gets rid of the loading component
     setLoading(false);
     return payload.choices[0].text;
   };
@@ -65,9 +51,8 @@ const Magic = ({ stack, setStack }: Props) => {
 
   const handleSubmit = async () => {
     const res = await openAI();
-    console.log(res);
-
     const newStack: StackItem[] = [ { prompt, response: res }, ...stack ];
+
     setStack(newStack);
   };
 
