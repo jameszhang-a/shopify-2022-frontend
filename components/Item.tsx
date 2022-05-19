@@ -1,6 +1,6 @@
 import {  Card, Table, useMantineTheme, Text } from '@mantine/core';
 import React from 'react';
-import { StackItem } from '../../pages';
+import { StackItem } from '../pages';
 
 type Props = StackItem;
 

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Button, Group, Textarea } from '@mantine/core';
-import { StackItem } from '../../pages';
+import { StackItem } from '../pages';
 import Loading from './Loading';
 
 type Props = {

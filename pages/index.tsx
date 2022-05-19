@@ -3,9 +3,10 @@ import { useState } from 'react';
 import { Container, Title } from '@mantine/core';
 import { useLocalStorage } from '@mantine/hooks';
 
-import History from '../lib/components/History';
-import Magic from '../lib/components/Magic';
-import StackItem from '../lib/components/Item';
+import History from '../components/History';
+import Magic from '../components/Magic';
+import StackItem from '../components/Item';
+import ExamplePrompts from '../components/ExamplePrompts';
 
 export type StackItem = {
   prompt: String;
@@ -21,6 +22,7 @@ const Home: NextPage = () => {
   return (
     <Container style={{ height: '100vh' }}>
       <Title order={1}>Ask the AI anything!</Title>
+      <ExamplePrompts />
       <Magic stack={responseStack} setStack={setResponseStack} />
       <History stack={responseStack} />
     </Container>
